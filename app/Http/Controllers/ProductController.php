@@ -32,10 +32,14 @@ class ProductController extends Controller
 
     public function store(StoreProductRequest $request)
     {
+        // // Debug: xem dữ liệu có đến controller không
+        // dd($request->all());
+
         Product::create($request->validated());
 
         return redirect()->route('products.index')
-            ->with('success', 'Thêm sản phẩm thành công!');
+            ->with('success', 'Thêm sản phẩm thành công!')
+            ->with('success', '✅ Thêm sản phẩm mới thành công!');
     }
 
     public function show(Product $product)

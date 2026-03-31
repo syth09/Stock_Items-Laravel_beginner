@@ -20,4 +20,16 @@ class StoreProductRequest extends FormRequest
             'category' => 'required|string|max:255',
         ];
     }
+
+    public function messages(): array
+    {
+        return [
+            'name.required'     => 'Tên sản phẩm là bắt buộc.',
+            'price.required'    => 'Giá sản phẩm là bắt buộc.',
+            'quantity.required' => 'Số lượng sản phẩm là bắt buộc.',
+            'category.required' => 'Danh mục sản phẩm là bắt buộc.',
+            'price.min' => 'Giá phải lớn hơn hoặc bằng 0',
+            'quantity.min' => 'Số lượng không được âm',
+        ];
+    }
 }
