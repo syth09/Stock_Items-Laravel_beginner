@@ -1,59 +1,117 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Quản Lý Sản Phẩm (Kho Hàng) - Laravel
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## Giới thiệu
 
-## About Laravel
+Dự án **Quản lý Sản phẩm (Quản lý kho)** được xây dựng bằng Laravel Framework, thực hiện theo mô hình **MVC** và tuân thủ nghiêm ngặt các yêu cầu của bài tập.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Yêu cầu chức năng đã hoàn thành
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+- Thêm sản phẩm mới (Tên, Giá, Số lượng, Danh mục)
+- Hiển thị danh sách sản phẩm
+- Tìm kiếm sản phẩm theo tên
+- Sắp xếp theo tên (A → Z và Z → A)
+- Phân trang (Pagination)
+- Cập nhật thông tin sản phẩm
+- Xóa sản phẩm
+- Hiển thị trạng thái kho:
+    - **Hết hàng** (quantity = 0)
+    - **Sắp hết hàng** (quantity < 5)
+    - **Còn hàng** (quantity ≥ 5)
+- Validation dữ liệu đầy đủ
+- Giao diện sử dụng Bootstrap 5, rõ ràng và thân thiện
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Công nghệ sử dụng
 
-## Learning Laravel
+- **Laravel 12** (MVC Pattern)
+- **PHP 8.2+**
+- **MySQL**
+- **Blade Template**
+- **Bootstrap 5**
+- **Eloquent ORM**
+- **Form Request Validation** (tách lớp)
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+## Cấu trúc dự án
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+- **Route**: `routes/web.php`
+- **Controller**: `app/Http/Controllers/ProductController.php`
+- **Model**: `app/Models/Product.php`
+- **Validation**: `app/Http/Requests/StoreProductRequest.php` & `UpdateProductRequest.php`
+- **Views**: `resources/views/products/`
+- **Migration**: `database/migrations/..._create_products_table.php`
 
-## Laravel Sponsors
+## Hướng dẫn cài đặt & chạy dự án
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+### 1. Clone hoặc giải nén dự án
 
-### Premium Partners
+```bash
+cd C:\xampp\htdocs
+```
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+### 2. Cài đặt dependencies
 
-## Contributing
+```bash
+composer install
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### 3. Copy file môi trường
 
-## Code of Conduct
+```bash
+cp .env.example .env
+```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+### 4. Cấu hình Database
 
-## Security Vulnerabilities
+- Mở file .env và chỉnh sửa:
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+```
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=stock_items
+DB_USERNAME=root
+DB_PASSWORD=
+```
 
-## License
+### 5. Tạo Database
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+- Vào phpMyAdmin tạo database tên stock_items.
+
+### 6. Chạy Migration
+
+```bash
+php artisan migrate
+```
+
+### 7. Chạy dự án
+
+```bash
+php artisan serve
+```
+
+- Truy cập: http://127.0.0.1:8000/products
+
+## Các chức năng chính
+
+- Thêm sản phẩm (Có validation)
+- Hiển thị danh sách (Phân trang)
+- Tìm kiếm theo tên (Giữ query string)
+- Sắp xếp theo tên (A -> Z / Z -> A)
+- Cập nhật sản phẩm (Form edit)
+- Xóa sản phẩm (Có xác nhận)
+- Trạng thái kho (Hết hàng / Sắp hết hàng / Còn hàng đều có Badge màu sắc riêng biệt)
+- Validation dữ liệu (Sử dụng Form Request)
+
+## Các chức năng chính
+
+- Không viết HTML trong Controller
+- Bắt buộc sử dụng @csrf trong mọi form
+- Validation được tách riêng bằng Form Request
+- Code rõ ràng, dễ bảo trì, tuân thủ nguyên tắc MVC
+- Giao diện sử dụng Bootstrap 5, tiêu đề có background đẹp
+
+## Thông tin sinh viên
+
+- Họ và tên: Tạ Tuấn Phong
+- MSSV: 20220849
+- Lớp: DCCNTT 13.10.5
+- Môn học: PHP & Laravel - Bài 2: Quản lý Sản phẩm (Kho hàng)
