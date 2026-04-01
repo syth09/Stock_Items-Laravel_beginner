@@ -80,7 +80,10 @@
                             </span>
                         </td>
                         <td>{{ $product->created_at->format('d/m/Y') }}</td>
-                        <td>
+                        <td class="text-center">
+                            <a href="{{ route('products.show', $product) }}" class="btn btn-info btn-sm">
+                                <i class="bi bi-eye"></i> Chi tiết
+                            </a>
                             <a href="{{ route('products.edit', $product) }}" class="btn btn-warning btn-sm">
                                 <i class="bi bi-pencil"></i> Sửa
                             </a>
