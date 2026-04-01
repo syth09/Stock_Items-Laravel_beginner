@@ -101,7 +101,7 @@ php artisan serve
 - Trạng thái kho (Hết hàng / Sắp hết hàng / Còn hàng đều có Badge màu sắc riêng biệt)
 - Validation dữ liệu (Sử dụng Form Request)
 
-## Các chức năng chính
+## Yêu cầu quan trọng đã đáp ứng
 
 - Không viết HTML trong Controller
 - Bắt buộc sử dụng @csrf trong mọi form
